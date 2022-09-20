@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "928919142326",
+    "project_id": "pwpb-comic-kt",
+    "storage_bucket": "pwpb-comic-kt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928919142326:android:99ec3eaa5e215c6748cb17",
+        "android_client_info": {
+          "package_name": "com.example.pwpb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "928919142326-h48qt2ipeiq6ehugch0nobmcekg3gatc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi0BcULZj1wCmzXKXo0MfqEmahyQhLCkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "928919142326-h48qt2ipeiq6ehugch0nobmcekg3gatc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

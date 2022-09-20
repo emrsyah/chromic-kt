@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PWPB</string>
+    <string-array name="origin_list">
+        <item>Marvel</item>
+        <item>DC</item>
+    </string-array>
+</resources>
