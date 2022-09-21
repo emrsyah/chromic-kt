@@ -64,7 +64,7 @@ class HeroAdapter(private val heroes: MutableList<Hero>) : RecyclerView.Adapter<
                     heroFilterList = ArrayList(heroes)
                 } else {
                     val resultList = ArrayList<Hero>()
-                    for (row in heroes) {
+                    for (row in heroFilterList) {
 //                        Log.d("search 2", row.name.lowercase(Locale.ROOT))
                         if (row.name.lowercase(Locale.ROOT)
                                 .contains(charSearch.lowercase(Locale.ROOT))
@@ -90,12 +90,11 @@ class HeroAdapter(private val heroes: MutableList<Hero>) : RecyclerView.Adapter<
         }
     }
 
-    fun filterByChip(origin: String) {
-        if(origin == "Semua"){
-            heroFilterList = ArrayList(heroes)
-        } else{
+    fun filterByChip(origin: String, query: String) {
+        heroFilterList = ArrayList(heroes)
+        if(origin != "Semua"){
             val resultList = ArrayList<Hero>()
-            for (row in heroes) {
+            for (row in heroFilterList) {
                 if (row.origin.lowercase(Locale.ROOT) == origin.lowercase(Locale.ROOT))
                 {
                     resultList.add(row)
@@ -104,6 +103,9 @@ class HeroAdapter(private val heroes: MutableList<Hero>) : RecyclerView.Adapter<
             heroFilterList = resultList
         }
         notifyDataSetChanged()
+        if(query.length > 0) {
+            filter.filter(query)
+        }
     }
 
 
@@ -311,15 +313,19 @@ class layout_utama : AppCompatActivity() {
 
         val myDesc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla a mattis nulla, a venenatis dolor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam sed tellus eros. Aenean lobortis elit nec lacus cursus ultricies. Nulla eu finibus diam. Pellentesque sed tempor felis, at rhoncus orci. Suspendisse id nisl vitae tortor fermentum volutpat et sit amet ligula. Sed venenatis neque sed lectus blandit convallis. Sed vehicula volutpat ex nec elementum. Etiam eleifend tincidunt dolor a dignissim. Vestibulum eu semper sem, eu volutpat velit. Pellentesque ullamcorper magna vitae justo viverra vulputate. Suspendisse eu molestie nibh."
 
+//        myAdapter.filterByChip("Marvel")
+
         searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                myAdapter.filter.filter(newText)
+                val choice = chipGroup.findViewById<Chip>(chipGroup.checkedChipId).text
+                myAdapter.filterByChip(choice.toString(), newText.toString())
+//                myAdapter.filter.filter(newText)
 //                myAdapter.getListItem()
-//                Log.d("search", newText.toString())
+//                Log.d("filter", choice.toString())
 //                Log.d("search", adapter.getListItem().toString())
 //                adapter.getListItem()
                 return false
@@ -342,7 +348,9 @@ class layout_utama : AppCompatActivity() {
 
         chipGroup.setOnCheckedStateChangeListener{ chipGroup, checkedId ->
             val choice = chipGroup.findViewById<Chip>(checkedId[0])?.text
-            myAdapter.filterByChip(choice.toString())
+            val input = searchBar.query.toString()
+//            Log.d("filter", input)
+            myAdapter.filterByChip(choice.toString(), input)
         }
 
     }

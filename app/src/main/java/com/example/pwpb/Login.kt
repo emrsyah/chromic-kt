@@ -32,11 +32,16 @@ class Login : AppCompatActivity() {
         val nama : TextView = findViewById(R.id.inputNama)
         val pass : TextView = findViewById(R.id.inputPass)
         val btn: Button = findViewById(R.id.btnLg)
+        val forgot: TextView = findViewById(R.id.forgot)
         val ipt = nama.text
         val ps = pass.text
 
         val namaConst = "admin"
         val passConst = "adminpass"
+
+        forgot.setOnClickListener {
+            startActivity(Intent(this, ForgotPassword::class.java))
+        }
 
         btn.setOnClickListener{
             Log.d("tag", namaConst)

@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PWPB">
         <activity
+            android:name=".ForgotPassword"
+            android:exported="false" />
+        <activity
             android:name=".Profiles"
             android:exported="false" />
         <activity
